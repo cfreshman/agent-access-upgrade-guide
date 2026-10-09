@@ -2,7 +2,7 @@ Paste this into your preferred coding agent. For example, use **Codex** with **G
 
 ```text
 Get https://github.com/cfreshman/agent-access-upgrade-guide and use it to add
-agent access to my existing website.
+agent access to my existing web app.
 
 Clone or download the complete guide into a separate reference directory and
 record the revision used. If my target project is not clear from this chat,
@@ -24,9 +24,9 @@ privacy, cost, or behavior. Follow my existing deployment and Git publication
 instructions. Finish with verified workflows, setup instructions, and real limits.
 ```
 
-# Give your website useful agent access
+# Give your web app useful agent access
 
-Turn an existing website's workflows into operations that a coding agent or other assistant can discover and use through a CLI and MCP. People keep using the same website. An agent can read current records, make the requested change, and return a result you can verify, without navigating every screen through clicks.
+Turn an existing web app's workflows into operations that a coding agent or other assistant can discover and use through a CLI and MCP. People keep using the same app. An agent can read current records, make the requested change, and return a result you can verify, without navigating every screen through clicks.
 
 The practical benefit is ordinary work: updating a draft, organizing records, exporting data, or completing an authorized team workflow. The difficult part is preserving what the application already knows about permissions, side effects, and interrupted work. This guide provides a procedure for doing that.
 
@@ -51,7 +51,7 @@ Keep this directory together. It is self-contained and can be copied into a proj
 
 If the project already has an API, CLI, or connection system, extend it. You may already have much of the operation layer. Avoid rebuilding working infrastructure just to match this guide's example names.
 
-Codex with GPT-6.1 Sol at Max reasoning is one example setup, not a requirement. Use another capable coding agent or follow the procedure yourself. Your website does not need that model or a hosted AI service. See [the model reference](https://developers.openai.com/api/docs/models/gpt-6.1-sol) if using the example setup.
+Codex with GPT-6.1 Sol at Max reasoning is one example setup, not a requirement. Use another capable coding agent or follow the procedure yourself. Your web app does not need that model or a hosted AI service. See [the model reference](https://developers.openai.com/api/docs/models/gpt-6.1-sol) if using the example setup.
 
 ## The architecture
 
