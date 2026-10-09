@@ -1,4 +1,4 @@
-In **Codex**, select **GPT-6.1 Sol** with **Max** reasoning, then paste:
+Paste this into your preferred coding agent. For example, use **Codex** with **GPT-6.1 Sol** and **Max** reasoning:
 
 ```text
 Get https://github.com/cfreshman/agent-access-upgrade-guide and use it to add
@@ -51,7 +51,7 @@ Keep this directory together. It is self-contained and can be copied into a proj
 
 If the project already has an API, CLI, or connection system, extend it. You may already have much of the operation layer. Avoid rebuilding working infrastructure just to match this guide's example names.
 
-The opening prompt is written for Codex with GPT-6.1 Sol at Max reasoning. The procedure can also be followed by a developer or another capable coding agent; it does not require that model inside your website. See [the model reference](https://developers.openai.com/api/docs/models/gpt-6.1-sol) for supported reasoning settings.
+Codex with GPT-6.1 Sol at Max reasoning is one example setup, not a requirement. Use another capable coding agent or follow the procedure yourself. Your website does not need that model or a hosted AI service. See [the model reference](https://developers.openai.com/api/docs/models/gpt-6.1-sol) if using the example setup.
 
 ## The architecture
 
