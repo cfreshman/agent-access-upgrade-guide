@@ -73,6 +73,7 @@ An **operation** is one defined application action, with validated input, an aut
 
 - An independently installed client can connect, identify its account, discover real capabilities, and complete the agreed workflows through CLI and MCP.
 - Current account and resource permissions apply on every access path, including files, old routes, sockets, and returned retry results.
+- The owner can edit permissions and expiry during approval, including read/write and no expiry, regardless of what the agent requested.
 - Ordinary requested work proceeds under the authorization already given. Consequential actions use the exact target, content, destination, and state the person authorized.
 - Lost responses and concurrent edits have defined recovery paths. The client does not create a duplicate effect just because it did not receive success.
 - Results appear through the existing browser behavior, with useful IDs, links, exports, and errors. UI, authored text, history, and valid sessions are preserved.

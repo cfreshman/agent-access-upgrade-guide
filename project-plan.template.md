@@ -48,6 +48,7 @@ Choose from the existing app and authorized scope. Record a tradeoff only when i
 | Contract revision and state-precondition enforcement on all adapters | |
 | First login path: existing flow, device approval, or PAT | |
 | Named grant, scope/resource restrictions, expiry, and management | |
+| Editable approval: broader/narrower access, shorter/longer/no expiry, actual grant accepted by CLI | |
 | Issuance/delivery recovery and protected secret storage | |
 | Local profiles, concurrent writes, platform protection | |
 | Revocation cache bound and in-flight/dispatch guarantee | |

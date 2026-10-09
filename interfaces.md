@@ -25,7 +25,7 @@ The CLI should:
 - Save each mutation's key and exact request before dispatch, with private bounded storage. Reuse them on a documented retry. Do not invent a new action after a timeout.
 - Accept structured input files for large text and precise JSON. Preserve encoding, newlines, and omitted-versus-cleared fields. Use argument arrays for subprocesses; do not interpolate content into shell code.
 - Pin credentials to the configured origin. Reject redirects on credential-bearing requests unless a deliberately implemented policy can prove the destination is allowed. Never send a bearer to a returned arbitrary file or approval URL.
-- Verify the returned account and access before saving a new connection. Identify the selected profile without exposing its secret. Multiple invocations must not corrupt the profile store.
+- Verify the returned account and actual approved access before saving a new connection. Accept and report the owner's changed scope/lifetime, including broader access or no expiry; do not reject it merely because it differs from the request. Identify the selected profile without exposing its secret. Multiple invocations must not corrupt the profile store.
 
 An error envelope might include `code`, a safe message, a request key, `outcome` (`not_started`, `pending`, `complete`, or `unknown`), and a permitted recovery action. Those fields are your application contract, not MCP or HTTP standards. A transport exception alone usually cannot classify a write as `not_started`.
 

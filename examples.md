@@ -58,18 +58,37 @@ For hosts that accept an `mcpServers` object, this configuration reuses that cli
 
 Verify the actual host's configuration, executable search path, protocol support, and environment before using it. This is a local subprocess setup. It does not claim remote OAuth support, and it includes no secret.
 
+## The owner changes a pending grant
+
+This is illustrative application metadata, not an OAuth token response:
+
+```json
+{
+  "requested": { "scope": "read", "expiresInDays": 1 },
+  "approved": { "scope": "write", "expiresAt": null }
+}
+```
+
+Here `write` means read/write and `null` explicitly means no expiry. The request prefills read access for one day. The signed-in owner changes both controls and approves. The server issues the owner's selected grant, and the CLI accepts and reports read/write with no expiry. No second confirmation is needed for that deliberate owner choice. Current resource roles and the person's task instructions continue to limit what may be done.
+
+The original pending request still has its short approval deadline. Once the decision is committed, recovery returns that same approved grant; a retry cannot reinterpret `null` as the default lifetime or substitute a different decision. See [editable approval choices](access.md#keep-the-approval-choices-editable).
+
 ## Nonsecret connection prompt
 
 Generate your app's version from its real package instructions, command syntax, origins, and identity operation. Replace every bracketed field before displaying it to users.
 
 ```text
-Connect my agent to [site] as [intended account] with [access and expiry].
+Connect my agent to [site] as [intended account].
+Prefill [requested access and expiry]; let me edit both before approving,
+including read/write and no expiry, regardless of those requested values.
 Use the app's documented installation instructions: [instructions location].
 Start [actual browser-approved login command] and keep the private polling
 process running. Show me its approval link and short code.
 Use my browser to approve only if I have authorized browser interaction for
 this exact account and grant; otherwise leave the approval for me.
-If the account or grant differs, let me resolve it before proceeding.
+If the signed-in account differs, let me resolve it before proceeding.
+Do not choose a different grant on my behalf without my instruction.
+If I change the grant in the approval form, accept and report my final choice.
 Do not collect my password or extract browser cookies.
 Verify the returned identity and actual access with [identity command].
 Keep secrets out of chat, logs, command arguments, and host configuration.

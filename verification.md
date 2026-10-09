@@ -40,7 +40,20 @@ Test approval evidence at the claimed trust level. For a host-attested flag, ver
 
 For a device flow, exercise pending, slowdown, timeouts, denial, and expiry. Verify that only the short code/link are announced. Check wrong-origin approval, code guessing limits, and unexpected approval URLs. Two accounts racing to decide a request must not create two grants.
 
-Interrupt after the decision, after credential creation, after delivery, and before local save. Recovery must preserve the same owner/grant and fixed expiry, avoid duplicate credentials, and never reactivate a revoked grant. Verify any encrypted delivery cleanup or secret-derivation assumptions.
+Verify the owner's editable choices through the actual form, server, and installed client:
+
+| Requested → owner-approved | Expected result |
+| --- | --- |
+| Read for 1 day → read/write with no expiry | All choices available; final grant accepted and displayed by the CLI |
+| Read/write for 30 days → read for 7 days | Narrower/shorter final grant honored |
+| Read for 1 day → read for 90 days | Longer finite lifetime honored without clamping |
+| No expiry → a finite lifetime | Owner's deadline persisted and enforced |
+| Owner edits while request status refreshes | Controls stay editable while pending; polling/rerenders do not reset selections |
+| No-expiry credential beyond the original requested/default lifetime | Still authenticates if otherwise authorized; no fallback expiry or cleanup deletion |
+| No-expiry credential revoked or owner loses resource access | Revocation/current permissions still enforced |
+| Expired device request with No expiry selected | Approval/delivery rejected; unlimited credential lifetime cannot extend the login deadline |
+
+Interrupt after the decision, after credential creation, after delivery, and before local save. Recovery must preserve the same owner/grant and absolute expiry or explicit no-expiry value, avoid duplicate credentials, and never reactivate a revoked grant. A conflicting resubmitted choice cannot change a decision already committed. Verify any encrypted delivery cleanup or secret-derivation assumptions.
 
 For a PAT, verify protected creation, one-time reveal, metadata-only listing, safe local input, expiry, and revocation. For all flows, a failed identity check must preserve the old working profile. Exercise concurrent profile updates and reject unsafe credential paths. Verify each supported platform's permissions rather than extrapolating POSIX behavior to Windows.
 
@@ -82,7 +95,7 @@ Exercise upload staging, attachment failure, repeated upload completion, deletio
 
 For each principal client path, connect from the packaged artifact, verify identity, discover capabilities, perform an ordinary authorized workflow, inspect the result in the browser, recover one repeated mutation, and revoke the test connection. Include the hardest applicable file, membership, or consequential workflow.
 
-Check connection settings and approval UI at relevant desktop/mobile sizes against existing controls. Test wrong-account, expired, denied, and narrowed-grant states. Source inspection does not establish that the copied setup instructions or visible flow work.
+Check connection settings and approval UI at relevant desktop/mobile sizes against existing controls. Test wrong-account, expired, denied, broader/narrower access, and shorter/longer/no-expiry states. Source inspection does not establish that the copied setup instructions or visible flow work.
 
 Before an authorized deployment, verify additive migrations/indexes, release order, download/API/MCP routing, upload limits, dependency/runtime requirements, and rollback. Afterward, inspect actual response types and artifact contents, existing sessions, persisted test records, uploads, and relevant live updates. Preserve production configuration and unrelated services. If deployment is outside scope, mark these deployed checks outstanding.
 

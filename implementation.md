@@ -76,7 +76,7 @@ Continue through the inventory, including the awkward workflows: uploads, member
 
 ## 5. Add connection management without redesigning the product
 
-Reuse the existing account/settings location, components, spacing, language, and mobile behavior. A connection screen needs a name, access, expiry/status, and revoke action. An approval screen needs the actual signed-in account, the code/request being approved, the selected grant, and approve/deny controls.
+Reuse the existing account/settings location, components, spacing, language, and mobile behavior. A connection screen needs a name, access, expiry/status, and revoke action. An approval screen needs the actual signed-in account, the code/request being approved, editable name/access/expiry controls, and approve/deny actions. Always offer read and read/write plus expiry choices including No expiry, regardless of the agent's requested values. Those values prefill the form; they do not cap the owner's choice. Preserve edits while the request is pending and implement the same rule in issuance and the client, as described in [editable approval choices](access.md#keep-the-approval-choices-editable).
 
 Keep implementation details out of ordinary product UI. Put concise installation and connection instructions behind the app's existing help/copy pattern. Generate them from actual package locations, supported syntax, configured origins, and policy. Keep tokens out of copied prompts.
 
