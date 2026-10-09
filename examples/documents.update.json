@@ -1,0 +1,46 @@
+{
+  "name": "documents.update",
+  "kind": "write",
+  "operationVersion": "documents.update.v1",
+  "description": "Replace one authorized document's content at its expected revision.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["documentId", "expectedRevision", "content"],
+    "properties": {
+      "documentId": { "type": "string", "minLength": 1, "maxLength": 100 },
+      "expectedRevision": { "type": "string", "minLength": 1, "maxLength": 100 },
+      "content": { "type": "string", "maxLength": 1000000 }
+    }
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["documentId", "revision", "url"],
+    "properties": {
+      "documentId": { "type": "string", "minLength": 1, "maxLength": 100 },
+      "revision": { "type": "string", "minLength": 1, "maxLength": 100 },
+      "url": { "type": "string", "format": "uri", "maxLength": 2048 }
+    }
+  },
+  "policy": {
+    "scope": "write",
+    "resourcePermission": "current document editor in the authenticated tenant",
+    "humanOnly": false,
+    "extraConfirmation": false,
+    "authorization": "within the person's requested edit",
+    "effect": "replace content; preserve the existing document update events",
+    "cost": "no hosted model call",
+    "textHandling": "preserve content exactly; an empty string clears it"
+  },
+  "recovery": {
+    "keyRequired": true,
+    "scope": ["tenantId", "connectionId", "idempotencyKey"],
+    "completedResultRetentionSeconds": 604800,
+    "unresolvedWork": "retain until reconciled",
+    "expiredResult": "inspect authoritative state; absence is not proof of no effect",
+    "replay": "authorize receipt access before returning stored data"
+  }
+}

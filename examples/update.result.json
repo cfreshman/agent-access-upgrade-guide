@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "operation": "documents.update",
+  "operationVersion": "documents.update.v1",
+  "receipt": {
+    "idempotencyKey": "b2e1d905-d949-4f09-8dda-6b4a6219fab5",
+    "state": "complete",
+    "replayed": false
+  },
+  "data": {
+    "documentId": "doc-example-001",
+    "revision": "r18",
+    "url": "https://app.example/documents/doc-example-001"
+  }
+}

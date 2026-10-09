@@ -1,0 +1,10 @@
+{
+  "operation": "documents.update",
+  "operationVersion": "documents.update.v1",
+  "idempotencyKey": "b2e1d905-d949-4f09-8dda-6b4a6219fab5",
+  "input": {
+    "documentId": "doc-example-001",
+    "expectedRevision": "r17",
+    "content": "The exact replacement text requested by the person.\n"
+  }
+}
