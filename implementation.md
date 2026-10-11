@@ -31,7 +31,7 @@ Include deliberate exclusions in the inventory: account recovery, password chang
 
 The usual first release consists of the existing backend, a CLI, local stdio MCP, and one usable credential flow. Use browser-approved device login when an interactive CLI connection benefits from it. A named PAT is a valid simpler alternative or fallback. Reuse a suitable existing client authentication flow rather than introducing another one.
 
-Complete [the access design](access.md). Decide names, scopes, resource restrictions, expiry, revocation, deletion of revoked connection entries, credential storage, and issuance recovery. Include owner-only cleanup in the existing settings and prevent deleted grants from being recreated by recovery. Record API, browser approval, and public app origins. Permit separate origins only through explicit configuration and validation.
+Complete [the access design](access.md). Decide names, scopes, resource restrictions, expiry, revocation, cleanup of revoked connection entries, credential storage, and issuance recovery. Hide/remove revoked entries entirely, or offer owner-only deletion if they remain visible. Keep recovery from reactivating revoked grants. Record API, browser approval, and public app origins. Permit separate origins only through explicit configuration and validation.
 
 Add remote MCP only when an intended client needs it. Add its optional standard authorization integration only if that client's connection requirements call for it. Do not make an OAuth service, hosted model, vector database, or new chat interface a prerequisite for direct operations.
 

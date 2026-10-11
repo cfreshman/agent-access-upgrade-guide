@@ -28,13 +28,13 @@ Expose credential management only through the intended account-management author
 
 Use TLS outside explicitly configured local development. Keep secrets out of URLs, command arguments, chat, logs, telemetry, crash reports, and discovery responses. Authentication and issuance responses should not be cached by shared intermediaries. Rate-limit credential creation, code guessing, and failed authentication without accidentally locking legitimate owners out through one attacker-controlled counter.
 
-### Delete revoked connections
+### Clean up revoked connections
 
-Give the owner a **Delete** action for revoked connections in the existing connection settings. Revocation stops access; deletion removes the entry and its display metadata. Do not leave an ever-growing list with no cleanup action, or hide revoked entries without providing a way to remove them. Bound and paginate inactive entries when necessary. Keep active connections until the owner revokes them first, and preserve other connections and browser sessions.
+Revoked connections must either be hidden or removed from settings entirely, or remain available for the owner to delete. Hiding them after revocation is a complete solution. If they stay visible, provide a Delete action so the list can be cleaned up. Preserve active connections and browser sessions.
 
-Enforce ownership and the revoked state on the server through the same account-management authority used for revocation. Repeated deletion should safely succeed without affecting another record. An external connection cannot delete other grants merely because it has write access.
+If deletion is offered, enforce ownership and the revoked state on the server through the same account-management authority used for revocation. Repeated deletion should safely succeed. An external connection cannot delete other grants merely because it has write access.
 
-Trace device approval, polling, interrupted issuance, and delivery recovery before removing the credential record. A delayed create-if-absent retry must not recreate a deleted grant. Where needed, compact it to a small revocation tombstone containing only the identity, owner, verification hash, and deletion/revocation markers needed to reject authentication and prevent reissuance. Exclude that tombstone from connection lists. Remove it only when all issuance/recovery paths are guaranteed unable to revive the grant. Preserve required audit and mutation-recovery records separately; connection-list cleanup does not erase application history.
+Cleanup must preserve revocation. Before physically removing credential records, trace device approval, polling, and interrupted issuance recovery so a retry cannot recreate an active grant. Retain a minimal, unlisted revocation record when needed. Preserve required audit and mutation-recovery history separately.
 
 ## Choose one working login flow first
 
@@ -100,7 +100,7 @@ Use the OS credential store where appropriate, or private configuration with pla
 | --- | --- |
 | Local logout | Remove the selected local credential; other profiles and browser sessions remain intact |
 | Server revocation | Reject subsequent authentication according to the documented cache/in-flight policy |
-| Delete revoked connection | Remove its settings entry and display metadata; its credential remains unusable and issuance retries cannot revive it |
+| Revoked connection cleanup | Hide/remove the entry, or let the owner delete it; its credential remains unusable and issuance retries cannot revive it |
 | Revoke and logout | Revoke first, then remove local state; retain recovery information if the response is lost |
 | Uninstall | Remove only the package and explicitly owned configuration/registrations |
 

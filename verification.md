@@ -29,10 +29,10 @@ Do not count a registry asserting its own contents as proof of behavior. Inspect
 | Same token after membership/role/visibility change | Current policy enforced, including protected receipt payloads |
 | Expired row still present | Credential and device expiry enforced independently of cleanup |
 | Revoked credential, already-running MCP client | Next protected request rejected within the promised revocation bound |
-| Owner deletes a revoked connection, then reloads settings | Entry absent; display metadata removed; browser and sibling connections preserved |
-| Active or another owner's connection submitted for deletion | Rejected without changing its grant or disclosing another owner's record |
-| Deleted connection used or deleted again | Credential remains rejected; repeated owner deletion safely succeeds |
-| Delete races approval, polling, or interrupted issuance recovery | No revived credential, delivered bearer, or reappearing connection entry |
+| Revoke a connection, then reload settings | Entry hidden/removed entirely, or available for owner deletion; active and browser sessions preserved |
+| If deletion is offered: active or another owner's connection submitted | Rejected without changing its grant or disclosing another owner's record |
+| If deletion is offered: repeat owner deletion | Safely succeeds; credential remains rejected |
+| Cleanup races approval, polling, or interrupted issuance recovery | No reactivated credential or delivered revoked bearer |
 | Legacy API/socket path | Agent token cannot bypass its grant; browser sessions remain valid |
 | Agent attempts credential escalation | Browser/account-management policy enforced |
 | Local logout and uninstall | Only intended owned local state removed |
